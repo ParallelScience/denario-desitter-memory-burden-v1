@@ -1,0 +1,70 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Define the coupled ordinary differential equations (ODEs) for the graviton occupation number $N$ and memory load $Q_{mem}$: $dN/dt = -1/\\sqrt{N} + \\gamma Q_{mem} / N^2$ and $dQ_{mem}/dt = N_s / \\sqrt{N}$, working in Planck units ($M_{Pl} = 1$).",
+                "Explicitly note that the fixed point condition $dN/dt = 0$ implies $Q_{mem}^* = N^{5/2}/\\gamma$.",
+                "Set up a simulation grid for different values of the coupling parameter $\\gamma$ (e.g., 0.1, 1.0, 10.0) and number of species $N_s$ (e.g., 10, 100, 1000).",
+                "Use an initial condition corresponding to an initial Hubble scale $H_0 = 10^{-2}$ (so $N(0) = 10^4$) and $Q_{mem}(0) = 0$.",
+                "Calculate the quantum breaking time $t_{qb} = N(0)^{3/2}/N_s$ per parameter set before integration, and require the integration time range to be at least $3 \\times t_{qb}$ to capture the post-breaking regime.",
+                "Use a stiff ODE solver (e.g., `scipy.integrate.solve_ivp` with `method='Radau'` or `'LSODA'`) with tolerances `rtol=1e-8` and `atol=1e-10` to ensure numerical stability.",
+                "Require the code to print the numerically observed plateau value of $Q_{mem}/N$ and compare it with the analytical prediction $N^{3/2}/\\gamma$.",
+                "Save the resulting time series data ($t$, $N$, $Q_{mem}$, and $H = 1/\\sqrt{N}$) to a file (e.g., `.npz` or `.csv`) in the database folder for later plotting."
+            ],
+            "sub_task": "Simulate the dynamical system of the graviton condensate to demonstrate the metastable de Sitter fixed point.",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the simulation data generated in Step 1.",
+                "Create a multi-panel figure consolidating the dynamical system results.",
+                "Include panels showing the time evolution of the Hubble parameter $H(t)$, the occupation number $N(t)$, and the memory load ratio $Q_{mem}(t)/N(t)$, highlighting the metastable quasi-de Sitter phase.",
+                "Add a phase-portrait panel in the $(N, Q_{mem}/N)$ plane showing the system trajectory and the fixed point to visualize the attractor nature of the metastable state.",
+                "Add a panel for the quantum breaking ratio: a log-log plot of the ratio $t_{life} / t_{qb} = N_e N_s H^2$ as a function of $H$ for selected $N_s$ values (e.g., $10^2$, $10^4$, $10^6$) with $N_e = 60$, drawing a horizontal dashed line at a ratio of 1.",
+                "Ensure all axes have clear labels, units (Planck units), and legends.",
+                "Save the plot as a high-resolution PNG file in the database folder."
+            ],
+            "sub_task": "Plot the dynamical system trajectories, phase portrait, and quantum breaking constraints.",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Define a logarithmic grid of $H$ values ranging from $10^{-6}$ to $10^{-2}$.",
+                "Compute the maximum allowed $N_s$ from the species bound: $N_s = 1/H^2$.",
+                "Compute the maximum allowed $N_s$ from the inflationary duration requirement for $N_e = 60$ e-folds: $N_s = 1/(60 \\cdot H^2)$.",
+                "Evaluate the dynamical selection equation $N_s \\cdot F(1/H) = 1/H^2$ to find $N_s$ as a function of $H$ for precise parameter choices: (a) constant $F(x) = 1$, (b) logarithmic $F(x) = \\ln(x)$, and (c) power-law $F(x) = x^p$ for $p \\in \\{0.5, 1.0, 2.0\\}$.",
+                "Solve for the intersection of each dynamical selection curve with the $N_e = 60$ constraint line and print the resulting $(H/M_{Pl}, N_s)$ coordinates.",
+                "Save all computed curves ($H$ arrays and corresponding $N_s$ arrays) to a data file in the database folder."
+            ],
+            "sub_task": "Compute the constraint boundaries and dynamical selection equilibrium lines for the phase diagram.",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the constraint and equilibrium line data from Step 3.",
+                "Create a log-log plot of $N_s$ versus $H/M_{Pl}$.",
+                "Shade and label the \"Forbidden Region\" where the species bound is violated ($N_s > 1/H^2$).",
+                "Shade and label the \"Quantum Breaking Region\" where inflation cannot last 60 e-folds ($1/(60 \\cdot H^2) < N_s \\leq 1/H^2$).",
+                "Include contour lines for $N_e = 30, 60,$ and $100$ as dashed lines within the stability corridor.",
+                "Overlay the dynamical selection equilibrium lines for the different $F(1/H)$ models.",
+                "Add a bounding box or shaded vertical band to highlight the observationally motivated range $H/M_{Pl} \\in [10^{-5}, 10^{-4}]$.",
+                "Save the phase diagram as a high-resolution PNG file in the database folder."
+            ],
+            "sub_task": "Generate and visualize the phase diagram of the inflationary parameter space.",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Synthesize the findings from the ODE simulations, explaining how the memory burden mechanism successfully stabilizes a quasi-de Sitter phase without a fundamental cosmological constant.",
+                "Add a subsection detailing the analytical stability analysis: derive the Jacobian of the ODE system at the fixed point, compute its eigenvalues symbolically, and discuss whether the fixed point is a stable node, spiral, or saddle, and what this implies for the robustness of the inflationary plateau.",
+                "Discuss the phase diagram, detailing how the species cutoff and the quantum breaking time strictly bound the allowed number of species and the duration of inflation.",
+                "Analyze the dynamical selection mechanism results, discussing which functional forms of $F(M_{Pl}/H)$ naturally drive the system toward the observationally favored scale $H/M_{Pl} \\sim 10^{-5} - 10^{-4}$.",
+                "Quote specific numerical values from the previous steps: plateau $H$ values, measured vs. analytical quantum breaking times, intersection coordinates of the dynamical selection curves, and maximum allowed $N_s$ values for $H/M_{Pl} = 10^{-5}$ and $10^{-4}$.",
+                "Conclude on the physical implications of replacing the inflaton potential with the dynamical saturation of gravito-information modes.",
+                "Reference the specific plots generated in the previous steps to support the analytical claims."
+            ],
+            "sub_task": "Write the comprehensive Results section of the research paper.",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
