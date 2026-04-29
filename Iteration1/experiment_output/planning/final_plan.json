@@ -1,0 +1,102 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Derive the functional form of the memory load functional F(M_Pl/H) by calculating the density of states for near-gapless Bogoliubov modes within the de Sitter horizon.",
+                "Model the memory load Q_mem as the integrated occupation of these modes using the Gibbons-Hawking temperature T = H/2pi.",
+                "Justify the scaling of F(x) based on phase space volume and holographic entropy constraints to provide a first-principles basis for the dynamical selection mechanism.",
+                "Explicitly tabulate the resulting functional forms of F(x) — specifically F = const, F ~ log(M_Pl/H), and F ~ (M_Pl/H)^alpha for several alpha values — with their physical justifications clearly stated, so that the engineer in later steps has a precise, unambiguous set of functional forms to implement numerically without needing to re-derive them."
+            ],
+            "sub_task": "Microscopic Derivation of the Memory Load Functional F(x)",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Update the feedback equation to dN/dt = -H + gamma(N) * Q_mem / N^2, with gamma(N) ~ 1/N.",
+                "Explicitly state the analytical fixed-point condition Q_mem* = N^3 * H / gamma (derived from dN/dt = 0 with gamma(N) ~ 1/N).",
+                "Compute the linearized eigenvalue of the Jacobian at this fixed point, and determine the sign of the real part to conclusively classify the fixed point as a stable node, stable spiral, or saddle.",
+                "Pass this classification as a concrete numerical/analytical result to the engineer in Step 3 for use in setting initial conditions near the fixed point.",
+                "Investigate whether the 1/N dependence leads to a limit cycle, providing a dynamical explanation for quasi-de Sitter expansion."
+            ],
+            "sub_task": "Stability Analysis of the Feedback System",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Write Python code to numerically integrate the coupled system (N, Q_mem) using a Runge-Kutta solver with adaptive time-stepping.",
+                "Implement the coupled ODE system using the specific fixed-point values derived in Step 2 as initial conditions.",
+                "Define a transition function Theta(Q_mem/N) physically motivated by the breakdown of the semiclassical approximation to model the graceful exit via quantum breaking.",
+                "Run multiple simulations for at least three representative values of N_s (e.g., N_s = 10, 100, 1000).",
+                "Verify numerically the dependence of the quantum breaking time t_qb on N_s against the analytical formula t_qb = M_Pl^2 / (N_s * H^3), and print these comparisons explicitly to the console.",
+                "Save the resulting time-series data (N, Q_mem, H, N_e, time) to disk as a NumPy or CSV file for later plotting."
+            ],
+            "sub_task": "Numerical Simulation of the Stability Corridor and Graceful Exit",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the time-series data generated in Step 3.",
+                "Generate a single multi-panel figure that includes time-series plots of N, Q_mem, H, and N_e, as well as a phase portrait in the (N, Q_mem) plane with vector field arrows showing the flow direction.",
+                "Verify visually the attractor structure identified analytically in Step 2 and that the duration of the plateau satisfies the requirement N_e >= 60.",
+                "Save the plot as a high-resolution PNG file with appropriate labels and titles."
+            ],
+            "sub_task": "Plotting the Stability Corridor and Graceful Exit",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Compute the boundaries in the (N_s, H/M_Pl) parameter space defined by the species cutoff (N_s <= M_Pl^2/H^2) and the e-fold requirement (N_e * N_s <= M_Pl^2/H^2) for N_e = 60.",
+                "Compute and save the boundary curve for a range of N_e values (e.g., N_e = 30, 60, 100) in addition to N_e = 60, so that the phase diagram in Step 6 can show how the stability corridor shifts with the e-fold requirement.",
+                "Derive and calculate the slow-roll parameter epsilon = -dot(H)/H^2 directly from the feedback equation.",
+                "Compute the tensor-to-scalar ratio r ~ 16 * epsilon, accounting for the departure from the fixed point as the system approaches quantum breaking.",
+                "Save the computed grid data, boundary curves, and r values to disk."
+            ],
+            "sub_task": "Mapping Discrete Species Constraints and Tensor-to-Scalar Ratio",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the grid and boundary data generated in Step 5.",
+                "Plot the phase diagram in (N_s, H/M_Pl) space using logarithmic axes for both N_s and H/M_Pl.",
+                "Ensure the three constraint boundaries — species cutoff, e-fold requirement, and dynamical selection — all appear on the same single figure with a clear legend distinguishing allowed from forbidden regions.",
+                "Overlay discrete particle physics models (e.g., N_s = 10^2, 10^3, 10^4-10^6) on the phase diagram to evaluate their compatibility.",
+                "Plot the tensor-to-scalar ratio r as a function of H/M_Pl and compare it with the observational bound r < 0.036.",
+                "Save the plots as high-resolution PNG files."
+            ],
+            "sub_task": "Plotting Phase Diagrams for Species Constraints and r",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Evaluate the dynamical selection equation N_s * F(M_Pl/H) ~ M_Pl^2/H^2 for various functional forms of F(x) (e.g., constant, logarithmic, power laws) provided in Step 1.",
+                "Solve for the equilibrium Hubble scale H given different values of N_s (from 1 to 10^8) for each functional form.",
+                "Explicitly verify the dynamical selection equation numerically by checking that for each (N_s, F(x)) pair, the solved equilibrium H satisfies the original constraint N_s * F(M_Pl/H) = M_Pl^2/H^2 to within a specified numerical tolerance (e.g., relative error < 10^-6), and print these verification results to the console.",
+                "Plot the equilibrium H/M_Pl as a function of N_s for the different F(x) models.",
+                "Highlight the observed inflationary scale range (10^-5 <= H/M_Pl <= 10^-4) to assess which models naturally select this scale.",
+                "Save the plots as high-resolution PNG files."
+            ],
+            "sub_task": "Compute and Plot Sensitivity Analysis of the Selection Mechanism",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Integrate all findings into a cohesive framework defining the inflationary epoch as a self-regulating information-storage process.",
+                "Discuss the implications of the \"Stability Corridor\" plot, the intersection of the species cutoff, the N_e=60 requirement, and the observational bounds on r.",
+                "Confirm how graviton condensation provides a consistent alternative to a fundamental cosmological constant.",
+                "Explicitly discuss the physical meaning of the stability eigenvalue computed in Step 2 in the context of the graceful exit: specifically, whether the transition from stable attractor to quantum breaking is a bifurcation (e.g., the eigenvalue crossing zero) or a saturation effect, and how this maps onto the smooth suppression modeled by the transition function Theta in Step 3."
+            ],
+            "sub_task": "Synthesis of Information-Theoretic Constraints",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Write the full Results section of the paper based on all previous steps.",
+                "Report on all qualitative and quantitative results, interpretations of the plots, and key statistics.",
+                "Include explicit references to the plots generated by the engineer and ensure all relevant information is comprehensively documented for the paper writer agents.",
+                "Include a dedicated subsection summarizing all key numerical inequalities derived and verified — specifically N_s <= M_Pl^2/H^2, N_e * N_s <= M_Pl^2/H^2, and the equilibrium H values from the dynamical selection mechanism — presented as a concise table with columns for constraint name, analytical form, and numerical value for representative parameter choices (e.g., H/M_Pl = 10^-5, N_e = 60)."
+            ],
+            "sub_task": "Final Results Report",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
