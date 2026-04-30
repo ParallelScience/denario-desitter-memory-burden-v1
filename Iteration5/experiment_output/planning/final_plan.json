@@ -1,0 +1,82 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Define the coupled ODEs for N(t) and Q_mem(t): dN/dt = -H + gamma * Q_mem / N^2 and dQ_mem/dt = alpha * N_s * H, with H = N^{-1/2} (M_Pl = 1).",
+                "Analytically derive fixed-point conditions (dN/dt=0, dQ_mem/dt=0), express (N*, Q_mem*) in closed form, and classify stability via Jacobian eigenvalues. Print these values explicitly.",
+                "Numerically integrate these equations using dimensionless time units scaled by H^-1, starting from Q_mem(0) = 0 and an initial N corresponding to H = 10^{-4}, for multiple parameter combinations (gamma, alpha, N_s).",
+                "Generate a multi-panel figure with subplots for N(t), Q_mem(t)/N(t), and H(t) for the multiple parameter combinations to demonstrate convergence. Save the plot to the database path.",
+                "Save the resulting time series arrays and stability metrics to a `.npz` or `.csv` file in the database path."
+            ],
+            "sub_task": "Dynamical System Formalization, Stability Analysis, and Visualization (Computation & Plotting)",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Set up a grid of physically motivated parameter values: gamma in [0.1, 10], alpha in [0.1, 10], N_s in [1, 10^6], and initial H/M_Pl in [10^-5, 10^-2].",
+                "For each parameter combination, integrate the ODEs and compute slow-roll parameters epsilon = -dot{H}/H^2 and eta = dot{epsilon}/(H*epsilon) using numerical derivatives of H(t) from the ODE results.",
+                "Calculate the scalar spectral index n_s = 1 - 6*epsilon + 2*eta and tensor-to-scalar ratio r = 16*epsilon evaluated near the metastable fixed point.",
+                "Save the computed grid of (gamma, alpha, N_s, n_s, r) to a `.csv` or `.npz` file in the database path."
+            ],
+            "sub_task": "Perturbation Spectrum and Observational Consistency (Computation)",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the perturbation spectrum data from Step 2.",
+                "Generate a scatter plot of n_s vs r, color-coded by a third parameter (e.g., N_s or gamma).",
+                "Overlay the observational constraints from Planck 2018, approximating the 68% and 95% confidence levels as ellipses in the n_s-r plane.",
+                "Highlight the regions of parameter space consistent with observations.",
+                "Save the high-resolution plot to the database path."
+            ],
+            "sub_task": "Perturbation Spectrum Visualization (Plotting)",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Provide a theoretical derivation of the functional form of the memory load Q_mem ~ N_s F(M_Pl/H) based on the holographic entropy bound and the density of states of Bogoliubov modes.",
+                "Derive the scaling F(M_Pl/H) ~ (M_Pl/H)^p, identify values of p yielding consistent dynamical selection.",
+                "Provide a summary table of functional forms (constant, log, power-law) and their attractor properties.",
+                "Write a detailed markdown report on these theoretical justifications."
+            ],
+            "sub_task": "Information-Theoretic Justification of the Memory Load",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Implement the dynamical selection equation N_s * F(1/H) = 1/H^2 (with M_Pl = 1). Evaluate N_s as a function of H for different forms of F(x) (e.g., F(x) = 1, F(x) = log(x), F(x) = x^p).",
+                "Calculate the quantum breaking time t_qb = 1 / (N_s * H^3).",
+                "Model the decay rate Gamma of the condensate at t_qb in terms of the species cutoff Lambda_g = 1 / sqrt(N_s), assuming Gamma ~ Lambda_g^3 / M_Pl^2 = N_s^{-3/2}.",
+                "Estimate the reheating temperature using the corrected formula T_rh ~ (90/(pi^2 g_*))^0.25 * (Gamma * M_Pl)^0.5, using g_* ~ N_s.",
+                "Print the T_rh values in both Planck units and GeV (using 1 M_Pl = 1.22 * 10^{19} GeV).",
+                "Save the computed arrays for N_s(H), t_qb, Gamma, and T_rh to a `.npz` or `.csv` file in the database path."
+            ],
+            "sub_task": "Dynamical Selection and Reheating (Computation)",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the data generated in Step 5.",
+                "Create a comprehensive phase diagram in the (N_s, H/M_Pl) plane (using log-log scales, with H/M_Pl from 10^{-8} to 1, and N_s from 1 to 10^12).",
+                "Plot the primary theoretical constraints: (a) species cutoff N_s = 1/H^2, (b) e-fold requirement N_s = 1 / (N_e * H^2) for multiple N_e values (60, 100, 1000). Shade forbidden regions.",
+                "Overlay the dynamical selection curves for different F(x) forms with distinct line styles and a legend.",
+                "Overlay reheating temperature contours (e.g., T_rh > 10 MeV).",
+                "Highlight the observational H/M_Pl band (10^-5 to 10^-4).",
+                "Save the high-resolution phase diagram plot to the database path."
+            ],
+            "sub_task": "Observational Viability Mapping (Phase Diagrams)",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Write the full Results section of the research paper.",
+                "Synthesize the findings from the dynamical system analysis, perturbation spectrum, dynamical selection, reheating, and phase diagrams.",
+                "Explicitly quote all key numerical values (fixed points, eigenvalues, n_s/r ranges, predicted N_s, and T_rh) rather than providing qualitative summaries.",
+                "Conclude whether the graviton condensate framework and memory burden mechanism provide a self-consistent and viable alternative to standard inflaton-based models.",
+                "Ensure all relevant information is included for the final report."
+            ],
+            "sub_task": "Synthesis of Theoretical Viability",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
