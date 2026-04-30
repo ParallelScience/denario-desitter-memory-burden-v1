@@ -1,0 +1,76 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Derive the scaling of the memory load $Q_{mem}$ by calculating the density of states for Bogoliubov modes $b_k$ within the graviton condensate.",
+                "Explicitly derive the dynamical selection equation $N_s * F(M_{Pl}/H) \\sim M_{Pl}^2/H^2$ for three specific functional forms: $F = \\text{const}$, $F \\sim \\log(M_{Pl}/H)$, and power laws $F \\sim (M_{Pl}/H)^p$.",
+                "Determine analytically whether each of these three forms yields a unique preferred $H$ or only an inequality."
+            ],
+            "sub_task": "Derivation of the Memory Load Functional F(M_Pl/H)",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Analytically identify the fixed point $(N^*, Q^*)$ from the condition $dN/dt = 0$ with $Q_{mem} \\sim N$. Linearize the system around this point to extract the eigenvalues of the Jacobian matrix, and print these eigenvalues numerically.",
+                "Write Python code to numerically solve the coupled ODEs for the graviton condensate: $dN/dt = -H + \\gamma Q_{mem}/N^2$ and $dQ_{mem}/dt = N_s H$, using $H = M_{Pl}/\\sqrt{N}$ and $M_{Pl}=1$.",
+                "Implement a simulation of the coupled system incorporating discrete stochastic jumps in $N_s$ at mass thresholds $m_i \\approx H$. Define and print a quantitative success metric: the number of e-folds elapsed before $H$ drifts more than 1% from its fixed-point value.",
+                "Save all time series arrays ($t, N, Q_{mem}, H$) for both smooth and stochastic cases to a single compressed NumPy file for later visualization."
+            ],
+            "sub_task": "Computation: Stability Analysis & Stochastic Stress Testing",
+            "sub_task_agent": "engineer",
+            "code_execution_timeout": 3600
+        },
+        {
+            "bullet_points": [
+                "Define a 2D grid over the $(N_s, H/M_{Pl})$ parameter space using logarithmic spacing for both axes (e.g., $N_s \\in [1, 10^8]$, $H/M_{Pl} \\in [10^{-5}, 10^{-2}]$).",
+                "Calculate the reheating temperature $T_{rh}$ by equating condensate energy $E \\sim N \\cdot H$ to radiation energy density with $g_* = N_s$. Explicitly state and use a physically grounded conversion factor from Planck units to MeV to evaluate the BBN constraint ($T_{rh} > 10$ MeV).",
+                "Compute the spectral index $n_s$ and its running $\\alpha_s$ directly from the slow-roll parameters $\\epsilon = -\\dot{H}/H^2$ and $\\eta = \\dot{\\epsilon}/(H\\epsilon)$, using the feedback equation to express $\\dot{H}$ analytically in terms of $N$ and $Q_{mem}$ at the fixed point (do not use finite differences).",
+                "Evaluate the theoretical constraints: $N_s \\leq M_{Pl}^2/H^2$ and $N_e \\cdot N_s \\leq M_{Pl}^2/H^2$ for $N_e = 60$. Save the computed grid arrays and boolean constraint masks to disk."
+            ],
+            "sub_task": "Computation: Reheating, Spectral Index, and Parameter Sweep",
+            "sub_task_agent": "engineer",
+            "code_execution_timeout": 3600
+        },
+        {
+            "bullet_points": [
+                "Load the time series data generated in the stability and stochastic stress testing computation step.",
+                "Create a single multi-panel figure with clearly labeled subplots: (a) $H(t)$ smooth evolution, (b) $Q_{mem}(t)$ smooth evolution, (c) $H(t)$ for multiple stochastic realizations overlaid, and (d) a phase-space portrait in the $(N, Q_{mem})$ plane showing the nullcline and trajectories.",
+                "Save the plot as a high-resolution PNG file."
+            ],
+            "sub_task": "Visualization: Stability and Stochastic Stress Testing",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the grid data generated in the parameter sweep computation step.",
+                "Create a single multi-panel figure for reheating and spectral index visualizations, sharing consistent axis ranges with the phase diagram in Step 6.",
+                "In the $T_{rh}$ panel, use a logarithmic color scale and explicitly mark the BBN boundary ($T_{rh} = 10$ MeV) as a bold contour line.",
+                "In the $n_s$ and $\\alpha_s$ panels, include horizontal bands indicating the Planck 2018 observational constraints ($n_s = 0.965 \\pm 0.004$).",
+                "Save the plot as a high-resolution PNG file."
+            ],
+            "sub_task": "Visualization: Reheating and Spectral Index",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the grid data and constraint masks generated in the parameter sweep computation step.",
+                "Create a comprehensive phase diagram in the $(N_s, H/M_{Pl})$ plane. Include all three dynamical selection curves from the three functional forms of $F$ (constant, logarithmic, power-law) derived in Step 1, overlaid as distinct line styles.",
+                "Clearly shade the allowed \"success region\" defined as the intersection of: (a) $N_s \\leq M_{Pl}^2/H^2$, (b) $N_e \\cdot N_s \\leq M_{Pl}^2/H^2$ for $N_e = 60$, (c) $T_{rh} > 10$ MeV, and the $n_s$ observational band.",
+                "Label forbidden regions with the specific constraint that excludes them (e.g., \"quantum breaking too fast\", \"species cutoff violated\", \"BBN excluded\"). Save as a high-resolution PNG file."
+            ],
+            "sub_task": "Visualization: Unified Phase Diagram",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Write the full Results section of the paper in markdown format.",
+                "Synthesize the analytical derivations regarding the memory load functional and its scaling.",
+                "Include explicit numerical values extracted from the printed console output of the engineer steps — specifically the Jacobian eigenvalues, the quantitative success metric from the stochastic stress test, the exact boundaries of the success region in $(N_s, H/M_{Pl})$ space, and the predicted $n_s$ and $\\alpha_s$ values at representative parameter points.",
+                "Interpret the quantitative results and plots generated in the visualization steps.",
+                "Explicitly state what observational signature (e.g., a specific relationship between the tensor-to-scalar ratio $r$ and $N_s$) would rule out the graviton condensate framework, making the falsifiability criterion concrete and testable."
+            ],
+            "sub_task": "Synthesis and Falsifiability Assessment",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
