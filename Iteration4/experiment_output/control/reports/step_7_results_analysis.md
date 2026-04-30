@@ -1,0 +1,67 @@
+<!-- filename: reports/step_7_results_analysis.md -->
+# Results
+
+## 1. Dynamical Generation and Stabilization of the de Sitter Phase
+
+The foundational premise of the graviton condensate framework is that the de Sitter phase is not supported by a fundamental cosmological constant, but rather dynamically stabilized by the memory burden backreaction. To validate this, we numerically integrated the coupled ordinary differential equations governing the graviton occupation number $N$ and the memory load $Q_{mem}$:
+<code>
+\frac{dN}{dt} = -H + \gamma \frac{Q_{mem}}{N^2}, \quad \frac{dQ_{mem}}{dt} = N_s H
+</code>
+where $H = N^{-1/2}$ in Planck units ($M_{Pl} = 1$). The simulations were initialized at a typical inflationary scale $H_0 = 1.0 \times 10^{-4}$ (corresponding to $N_0 = 1.0 \times 10^8$) with $Q_{mem}(0) = 0$.
+
+Our numerical results confirm the existence of a metastable quasi-de Sitter state where $dN/dt \approx 0$. For a coupling constant $\gamma = 10^5$ and species count $N_s = 100$, the system reached stabilization at $t = 9.991 \times 10^8 \ M_{Pl}^{-1}$. The analytically predicted critical memory load at this stabilization point was $Q_{mem}^* = 9.993 \times 10^6$, which perfectly matched the numerically observed value, yielding a consistency ratio of $1.00000$. Similarly, for $\gamma = 10^5$ and $N_s = 10$, stabilization occurred at $t = 9.909 \times 10^9 \ M_{Pl}^{-1}$ with $Q_{mem}^* = 9.926 \times 10^6$. Increasing the coupling to $\gamma = 10^6$ for $N_s = 100$ resulted in an earlier stabilization at $t = 9.999 \times 10^7 \ M_{Pl}^{-1}$ with $Q_{mem}^* = 9.999 \times 10^5$. 
+
+The time evolution of the ratio $Q_{mem}(t)/N(t)$ explicitly quantifies the approach to quantum breaking. For $\gamma = 10^5$ and $N_s = 100$, the ratio progressed from $0.105$ at $10\%$ of the quantum breaking time ($t_{qb}$) to exactly $1.000$ at $t_{qb} = 1.049 \times 10^{10} \ M_{Pl}^{-1}$, marking the onset of quantum breaking where semiclassicality breaks down. These dynamics are visually corroborated in `data/step_2_dynamical_feedback_simulation_1_1777534466.png`, which illustrates the plateauing of $H(t)$ during the metastable phase before the memory burden overwhelms the condensate.
+
+## 2. Structural Stability and Species-Hubble Coupling
+
+To rigorously assess the robustness of the metastable fixed point, we performed a Jacobian stability analysis in the $(\gamma, N_s)$ parameter space at $N^* = 10^8$. The analysis revealed that all eigenvalues of the linearized system possess negative real parts, unequivocally indicating that the fixed point is an attractor and is always stable within the physically relevant parameter regime.
+
+Interestingly, the system exhibits a transition from a stable node (characterized by purely real eigenvalues) to a stable spiral (complex eigenvalues). This transition is governed by the discriminant of the Jacobian matrix:
+<code>
+\Delta = 2.25 N^{-3} - 2 \gamma N_s N^{-3.5}
+</code>
+The condition for a stable spiral is $\gamma N_s > 1.125 N^{0.5}$. For our fiducial value of $N^* = 10^8$, this threshold is $\gamma N_s > 11250.0$. The stability phase map (`data/step_3_stability_phase_map_1_1777534711.png`) maps this topological transition, confirming that the memory burden mechanism is structurally stable across orders of magnitude in coupling strength and species count.
+
+Furthermore, we conducted a secondary sensitivity test by introducing a continuous species-Hubble coupling of the form $N_s(H) = (1/H)^\beta$. Simulating the modified dynamics for $\gamma = 10^5$ and $N_0 = 10^8$, we found that the attractor trajectory remains robust. However, the quantum breaking time is highly sensitive to the coupling exponent $\beta$. For $\beta = 0$ (constant $N_s$), $t_{qb}$ was not reached within the simulation timeframe of $10^{14} \ M_{Pl}^{-1}$. For $\beta = 1$, quantum breaking occurred at $t_{qb} = 1.000 \times 10^8 \ M_{Pl}^{-1}$, and for $\beta = 2$, it was drastically reduced to $t_{qb} = 1.000 \times 10^4 \ M_{Pl}^{-1}$. This demonstrates that stronger species-Hubble couplings accelerate the accumulation of the memory burden, as depicted in `data/step_3_modified_dynamics_sim_2_1777534711.png`.
+
+## 3. Quantum Breaking Time and the Central Inequality
+
+The longevity of the inflationary phase is strictly bounded by the quantum breaking time $t_{qb} = M_{Pl}^2 / (N_s H^3)$. We computed $t_{qb}$ across a wide grid of $H$ and $N_s$ values, visualizing the results in `data/step_4_quantum_breaking_time_1_1777534764.png`. Key numerical values highlight the inverse relationship between $t_{qb}$ and both $H$ and $N_s$:
+- For $H = 10^{-5} \ M_{Pl}$: $t_{qb} = 10^{15} \ M_{Pl}^{-1}$ ($N_s = 1$), $10^{13} \ M_{Pl}^{-1}$ ($N_s = 100$), and $10^9 \ M_{Pl}^{-1}$ ($N_s = 10^6$).
+- For $H = 10^{-4} \ M_{Pl}$: $t_{qb} = 10^{12} \ M_{Pl}^{-1}$ ($N_s = 1$), $10^{10} \ M_{Pl}^{-1}$ ($N_s = 100$), and $10^6 \ M_{Pl}^{-1}$ ($N_s = 10^6$).
+- For $H = 10^{-2} \ M_{Pl}$: $t_{qb} = 10^6 \ M_{Pl}^{-1}$ ($N_s = 1$), and $10^4 \ M_{Pl}^{-1}$ ($N_s = 100$).
+
+Requiring the inflationary duration $t_{life} = N_e / H$ to be less than or equal to $t_{qb}$ yields the central inequality $H^2 \leq M_{Pl}^2 / (N_s N_e)$. For a standard inflationary requirement of $N_e = 60$ e-folds, this inequality imposes strict upper bounds on the Hubble scale:
+- $N_s = 1 \implies H_{max} = 1.291 \times 10^{-1} \ M_{Pl}$
+- $N_s = 100 \implies H_{max} = 1.291 \times 10^{-2} \ M_{Pl}$
+- $N_s = 10^4 \implies H_{max} = 1.291 \times 10^{-3} \ M_{Pl}$
+- $N_s = 10^6 \implies H_{max} = 1.291 \times 10^{-4} \ M_{Pl}$
+- $N_s = 10^8 \implies H_{max} = 1.291 \times 10^{-5} \ M_{Pl}$
+
+Conversely, for a fixed inflationary scale of $H = 10^{-4} \ M_{Pl}$, the maximum possible number of e-folds is constrained by the species count. While $N_s = 1$ allows for up to $10^8$ e-folds, a highly populated universe with $N_s = 10^8$ restricts inflation to a mere $N_{e,max} = 1$, which is grossly insufficient to solve the horizon and flatness problems.
+
+## 4. Information-Theoretic Constraints on Inflationary Duration
+
+The relation $N_e \cdot N_s \leq M_{Pl}^2 / H^2$ serves as a fundamental information-theoretic constraint on the inflationary parameter space. Our numerical verification confirmed this bound with absolute precision; the ratio of the computed $N_e = H t_{qb}$ to the expected theoretical maximum $M_{Pl}^2 / (N_s H^2)$ was exactly $1.00000$ across all tested combinations of $H \in [10^{-5}, 10^{-2}]$ and $N_s \in [1, 1000]$. This verification is graphically represented in `data/step_5_Ne_Ns_vs_H_1_1777534836.png`.
+
+The phase diagram in the $(N_s, H)$ plane (`data/step_5_phase_diagram_Ns_H_1_1777534836.png`) delineates the allowed and forbidden regions dictated by these constraints. The absolute upper bound is set by the species cutoff $N_s \leq M_{Pl}^2 / H^2$ (equivalent to $N_e = 1$). However, demanding a phenomenologically viable duration of inflation significantly shrinks the allowed parameter space. For a fixed $H = 10^{-4} \ M_{Pl}$, the maximum allowed number of species is:
+- $N_{s,max} = 1.67 \times 10^6$ for $N_e = 60$
+- $N_{s,max} = 1.00 \times 10^6$ for $N_e = 100$
+- $N_{s,max} = 1.00 \times 10^5$ for $N_e = 1000$
+
+These results demonstrate a strict dynamical trade-off: the information storage capacity of the de Sitter horizon (its entropy) must be partitioned between the number of particle species and the duration of inflation. A larger $N_s$ accelerates the saturation of memory modes, thereby precipitating an earlier quantum breaking and a premature exit from inflation.
+
+## 5. Dynamical Selection of the Hubble Scale
+
+A compelling feature of the memory burden framework is the potential for dynamical selection of the inflationary Hubble scale via the equilibrium condition $N_s F(M_{Pl}/H) \sim M_{Pl}^2/H^2$. By treating this condition as an exact equation, we explored different functional forms for the memory load functional $F(x)$ where $x = 1/H$.
+
+1. **Constant Functional ($F = \text{const}$):** This yields $H = 1/\sqrt{N_s}$, which exactly matches the species cutoff. For $N_s = 10^8$, this selects $H = 1.000 \times 10^{-4} \ M_{Pl}$, but restricts the maximum e-folds to $N_e = 1.0$, rendering it phenomenologically unviable for standard inflation.
+2. **Logarithmic Functional ($F = \ln(1/H)$):** The equation $x^2 = N_s \ln(x)$ admits solutions only for $N_s \geq 2e \approx 5.44$. For $N_s = 100$, it selects $H = 5.954 \times 10^{-2} \ M_{Pl}$ (allowing $N_e = 2.8$). For a large species count $N_s = 10^8$, it selects $H = 3.104 \times 10^{-5} \ M_{Pl}$, which allows for $N_e = 10.4$ e-folds.
+3. **Power-Law Functional ($F = (1/H)^{0.5}$):** This form yields a unique preferred scale $H = N_s^{-2/3}$. For $N_s = 100$, $H = 4.642 \times 10^{-2} \ M_{Pl}$ ($N_e = 4.6$). Crucially, for $N_s = 10^8$, it selects $H = 4.642 \times 10^{-6} \ M_{Pl}$, which naturally accommodates a prolonged inflationary phase with $N_e = 464.2$ e-folds.
+
+These selection trajectories are overlaid on the extended phase space diagram (`data/step_6_extended_phase_diagram_1_1777534969.png`). The analysis reveals that if the memory load scales as a fractional power law of the horizon size, the system is dynamically driven toward an inflationary scale $H \sim 10^{-6} - 10^{-5} \ M_{Pl}$ that is both consistent with CMB observations and capable of sustaining $>60$ e-folds, provided the microscopic species count is sufficiently large ($N_s \sim 10^8$).
+
+## 6. Conclusion on Theoretical Consistency
+
+The synthesis of these analytical and numerical results provides compelling evidence that the graviton condensate framework offers a self-consistent, naturalistic explanation for the dynamical origin of de Sitter spacetime. The memory burden mechanism successfully stabilizes the inflationary phase without invoking a bare cosmological constant or an ad-hoc inflaton potential. Instead, the Hubble scale and the duration of inflation are strictly governed by the information-theoretic constraints of the spacetime itself. The central inequality $N_e \cdot N_s \leq M_{Pl}^2 / H^2$ dictates that the universe must balance its microscopic complexity (species count) against its macroscopic expansion (e-folds) to avoid premature quantum breaking. Furthermore, the dynamical selection mechanism demonstrates that specific functional forms of information storage can naturally attract the system to the observed inflationary scales, effectively replacing the traditional slow-roll paradigm with the dynamical saturation of gravito-information modes.

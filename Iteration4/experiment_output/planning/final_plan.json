@@ -1,0 +1,89 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Provide background theoretical derivations for the fixed point, the species bound, and the $N_e$-$N_s$ relation based on the core theoretical framework.",
+                "Derive the fixed-point condition by setting $dN/dt = 0$ and $dQ_{mem}/dt = N_s \\cdot H$, showing that the fixed point requires $Q_{mem}^* = N^{3/2} / \\gamma$.",
+                "Derive the species bound $N_s \\leq M_{Pl}^2 / H^2$ from the gravitational cutoff.",
+                "Derive the $N_e$-$N_s$ relation $N_e \\leq M_{Pl}^2 / (N_s \\cdot H^2)$ using the quantum breaking time."
+            ],
+            "sub_task": "Background Theoretical Derivations",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Define the coupled ODE system for the graviton occupation number $N$ and memory load $Q_{mem}$: $dN/dt = -H + \\gamma Q_{mem}/N^2$ and $dQ_{mem}/dt = N_s H$, where $H = N^{-1/2}$ (working in Planck units $M_{Pl} = 1$).",
+                "Analytically compute the fixed-point condition $Q_{mem}^* = N^{3/2} / \\gamma$ and print this analytical value.",
+                "Numerically integrate the ODEs starting from $Q_{mem}(0) = 0$ and an initial $N_0$ corresponding to a typical inflationary scale (e.g., $H_0 = 10^{-4}$).",
+                "Simulate the time evolution for a few representative values of $\\gamma$ and $N_s$.",
+                "Print the numerically observed plateau value of $Q_{mem}$ alongside the analytical value to verify consistency.",
+                "Print the ratio $Q_{mem}(t)/N(t)$ over time for each simulation, explicitly quantifying the approach to the critical value $Q_{mem} \\sim N$, and numerically identify the onset of quantum breaking as the time when this ratio first reaches unity.",
+                "Generate and save plots of $N(t)$, $H(t)$, $Q_{mem}(t)$, and $Q_{mem}(t)/N(t)$ showing the stabilization phase and eventual quantum breaking."
+            ],
+            "sub_task": "Formalization and Simulation of the Dynamical Feedback System",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Focus on the Jacobian stability analysis at the fixed point $(N^*, Q_{mem}^*)$.",
+                "Linearize the ODE system around the fixed point and compute the 2x2 Jacobian analytically.",
+                "Evaluate the eigenvalues of the Jacobian numerically over a grid of $(\\gamma, N_s)$ values.",
+                "Generate and save a stability phase map (e.g., a heatmap of the dominant eigenvalue) in the $(\\gamma, N_s)$ plane.",
+                "As a secondary sensitivity test, introduce a continuous species-Hubble coupling $N_s(H) = (1/H)^\\beta$ and simulate the modified dynamical system to test the robustness of the attractor trajectory.",
+                "Save the stability data and print a summary of the conditions for a stable attractor, including key eigenvalue results."
+            ],
+            "sub_task": "Jacobian Stability Analysis at the Fixed Point",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Analytically and numerically verify the central inequality $H^2 \\leq M_{Pl}^2 / (N_s \\cdot N_e)$.",
+                "Compute the quantum breaking time $t_{qb} = M_{Pl}^2 / (N_s \\cdot H^3)$ as a function of $H$ and $N_s$.",
+                "Produce and save a contour plot of the quantum breaking time $t_{qb}$ as a function of $H$ and $N_s$.",
+                "Print key values of $t_{qb}$ for typical $H$ and $N_s$ to verify the analytical formulas.",
+                "Ensure no out-of-scope BBN or reheating physics is included."
+            ],
+            "sub_task": "Verification of Quantum Breaking Time and Central Inequality",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Perform a dedicated numerical verification of the $N_e$-$N_s$ relation.",
+                "Compute $N_e = H \\cdot t_{qb}$ as a function of $N_s$ and $H$.",
+                "Plot $N_e \\cdot N_s$ vs $H/M_{Pl}$ to verify the bound $N_e \\cdot N_s \\leq 1/H^2$.",
+                "Produce and save phase diagrams showing allowed and forbidden regions in the $(N_s, H/M_{Pl})$ space for multiple values of $N_e$ (e.g., 60, 100, 1000).",
+                "Print the numerical verification results, confirming the bounds."
+            ],
+            "sub_task": "Numerical Verification of the N_e-N_s Relation",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Explicitly perform the dynamical selection analysis: solve the selection equation $N_s \\cdot F(1/H) = 1/H^2$ numerically for $H$ as a function of $N_s$.",
+                "Explore different functional forms for $F$: $F = \\text{const}$, $F = \\ln(1/H)$, and $F = (1/H)^{0.5}$.",
+                "Print the resulting preferred $H$ values for $N_s = 1, 10, 100, 10^8$, and determine if each $F$ form yields a unique preferred $H$ or an inequality.",
+                "Generate a comprehensive phase diagram in the $(N_s, H)$ plane on a log-log scale.",
+                "Plot and shade the forbidden region from the species cutoff constraint: $N_s > 1/H^2$.",
+                "Extend the phase diagram to include multiple $N_e$ contours (e.g., 60, 100, 1000) for the quantum breaking constraint $N_s > 1/(N_e H^2)$ to demonstrate the shift of the allowed corridor with increasing e-fold requirements.",
+                "Overlay the curves representing the dynamical selection equation for the different $F$ forms.",
+                "Save the final phase diagram plot."
+            ],
+            "sub_task": "Dynamical Selection Analysis and Extended Phase Space Mapping",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Write the comprehensive Results section of the research paper.",
+                "Include all quantitative numerical results printed by the engineer in previous steps (fixed-point values, eigenvalues, $t_{qb}$ values, preferred $H$ values from dynamical selection) to ensure quantitative conclusions.",
+                "Interpret the numerical solutions from Step 2, discussing how the memory burden successfully stabilizes the de Sitter phase without a bare cosmological constant.",
+                "Discuss the structural stability and the implications of the species-Hubble coupling from Step 3.",
+                "Evaluate the verification of the central inequality and quantum breaking time from Step 4.",
+                "Analyze the $N_e$-$N_s$ relation and phase diagrams from Step 5.",
+                "Interpret the dynamical selection analysis and extended phase space diagram from Step 6, explaining how the information storage capacity (entropy) and quantum breaking strictly bound the inflationary parameter space.",
+                "Conclude on whether the graviton condensate framework provides a self-consistent, naturalistic explanation for the dynamical origin of de Sitter spacetime. Reference all generated plots."
+            ],
+            "sub_task": "Synthesis of Theoretical Consistency and Final Report",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
