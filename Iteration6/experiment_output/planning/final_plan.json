@@ -1,0 +1,63 @@
+{
+    "sub_tasks": [
+        {
+            "bullet_points": [
+                "Define the coupled ODEs for the graviton occupation number $N(t)$ and memory load $Q_{mem}(t)$: $dN/dt = -1/\\sqrt{N} + \\gamma Q_{mem}/N^2$ and $dQ_{mem}/dt = N_s / \\sqrt{N}$.",
+                "Use `sympy` to analytically find the nullclines and any fixed points or quasi-stationary states.",
+                "Print numerical values of the fixed-point coordinates (N*, Q_mem*) and the eigenvalues of the Jacobian matrix evaluated at the fixed point, to confirm whether the fixed point is a stable node, spiral, or saddle.",
+                "Generate a multi-panel figure with two subplots: (1) A phase-space vector field plot (streamplot) in the $(N, Q_{mem})$ plane for a representative set of parameters (e.g., $\\gamma=1$, $N_s=100$). Choose axis ranges that reflect the inflationary scale (e.g., $N \\sim 10^6$ to $10^{10}$ and $Q_{mem}$ up to $N$). (2) Representative time-series trajectories of $N(t)$ and $Q_{mem}(t)$ for a few initial conditions, demonstrating the metastable plateau behavior ($H$ approximately constant).",
+                "Save the multi-panel figure to `{database_path}`."
+            ],
+            "sub_task": "Dynamical System Formalization and Phase-Space Analysis",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Derive the effective slow-roll parameter $\\epsilon = -\\dot{H}/H^2$ directly from the memory burden feedback equation, using the relation $N = 1/H^2$.",
+                "Explicitly derive $\\epsilon$ as a function of $Q_{mem}/N$ (the memory load fraction), and show analytically the threshold value of $Q_{mem}/N$ below which $\\epsilon$ remains small enough for inflation to proceed.",
+                "Calculate the effective field theory (EFT) cutoff $\\Lambda_g = M_{Pl}/\\sqrt{N_s}$ and explicitly verify the consistency condition $H \\leq \\Lambda_g$.",
+                "Include a numerical table or set of explicit inequalities showing the consistency condition $H \\leq \\Lambda_g$ for representative values of $N_s$ (e.g., $1, 10^2, 10^4, 10^6, 10^8$) and $H/M_{Pl}$ in the inflationary range ($10^{-5}$ to $10^{-2}$).",
+                "Discuss the Swampland Distance Conjecture in the context of the large species count $N_s$."
+            ],
+            "sub_task": "Analytical Derivations for Memory Load, Perturbations, and UV-Consistency",
+            "sub_task_agent": "researcher"
+        },
+        {
+            "bullet_points": [
+                "Implement a numerical ODE solver (e.g., `scipy.integrate.solve_ivp`) for $N(t)$ and $Q_{mem}(t)$ using the defined equations.",
+                "Set initial conditions $N(0) = 1/H_{init}^2$ and $Q_{mem}(0) = 0$.",
+                "Integrate the system until the quantum breaking condition is reached, defined as $Q_{mem}(t) \\geq N(t)$.",
+                "Calculate the total number of e-folds $N_e = \\int_0^{t_{qb}} 1/\\sqrt{N(t)} dt$ and the quantum breaking time $t_{qb}$.",
+                "Perform this integration over a 2D grid of $H_{init}$ logarithmically spaced between $10^{-5}$ and $10^{-2}$, and $N_s$ logarithmically spaced between $1$ and $10^8$, with a grid resolution of at least 30x30 points. Set $\\gamma=1$.",
+                "Save the resulting grid of $(H_{init}, N_s, N_e, t_{qb})$ to a `.npz` file in `{database_path}`.",
+                "Print to the console a summary table of the analytically predicted $N_e$ (from $N_e = 1/(N_s \\cdot H_{init}^2)$) alongside the numerically computed $N_e$ for a representative subset of grid points.",
+                "Print the ratio $t_{qb\\_numerical} / t_{qb\\_analytical}$ for a representative subset of points to verify the accuracy of the analytical approximation $t_{qb} \\sim 1/(N_s \\cdot H_{init}^3)$."
+            ],
+            "sub_task": "Numerical Simulation of the Inflationary Trajectory",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Load the grid data generated in the previous step from `{database_path}`.",
+                "Generate a multi-panel figure with two subplots.",
+                "Subplot 1: A phase diagram in the $(N_s, H_{init}/M_{Pl})$ plane using log-log scales. Plot a heatmap or contour map of the simulated $N_e$, clearly highlighting the \"stability corridor\" where $N_e \\geq 60$. Overlay the theoretical constraint curves: (a) Species cutoff $N_s = 1/H_{init}^2$, (b) E-fold requirement $N_s = 1/(60 \\cdot H_{init}^2)$, and (c) Dynamical selection curves $N_s \\cdot F(1/H_{init}) = 1/H_{init}^2$ for $F(x)=1$, $F(x)=\\log(x)$, and $F(x)=x^{0.5}$. Include a clearly labeled fourth region or annotation identifying the CMB-motivated observational window ($H/M_{Pl}$ between $10^{-5}$ and $10^{-4}$).",
+                "Subplot 2: A plot showing $N_e$ as a function of $N_s$ for fixed values of $H/M_{Pl}$ (e.g., $10^{-5}, 10^{-4}, 10^{-3}$), comparing the analytical bound $N_e = 1/(N_s \\cdot H_{init}^2)$ against the numerically computed values.",
+                "Ensure the plot has clear labels, a legend, and a title. Save the plot to `{database_path}`."
+            ],
+            "sub_task": "Observational Viability Mapping and Plotting",
+            "sub_task_agent": "engineer"
+        },
+        {
+            "bullet_points": [
+                "Model the transition from the metastable de Sitter phase to the radiation-dominated era as a decay process at $t_{qb}$.",
+                "Explicitly compute and quote the reheating temperature $T_{rh}$ using the standard formula $T_{rh} \\sim (\\Gamma \\cdot M_{Pl})^{1/2}$ where $\\Gamma \\sim H$ at $t_{qb}$, and check whether $T_{rh}$ satisfies Big Bang Nucleosynthesis (BBN) constraints ($T_{rh} > 1$ MeV).",
+                "Write the comprehensive Results section of the paper.",
+                "Interpret the phase-space plots, the numerical trajectory results, and the observational viability map generated in the previous steps.",
+                "Include a dedicated subsection that consolidates all quantitative results into a single summary: the fixed-point values, the eigenvalue signs confirming stability, the numerical vs analytical $N_e$ comparison, the allowed $(N_s, H/M_{Pl})$ parameter space, and the reheating temperature estimate.",
+                "Conclude by discussing the trade-off between the model's theoretical elegance and its phenomenological challenges."
+            ],
+            "sub_task": "Reheating, Relic Abundance, and Synthesis of Theoretical Results",
+            "sub_task_agent": "researcher"
+        }
+    ]
+}
