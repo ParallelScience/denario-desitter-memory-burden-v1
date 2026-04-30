@@ -1,0 +1,17 @@
+{
+  "image0": {
+    "key": "image0",
+    "name": "step_2_phase_portraits_2_1777494832.png",
+    "caption": "Phase portraits of the graviton condensate system, illustrating the evolution of the memory load ($Q_{mem}$) versus the graviton number ($N$) for different values of the backreaction constant $\\gamma$ and the number of particle species $N_s$. The trajectories, originating from various initial conditions ($N_0$), demonstrate a rapid vertical convergence towards the nullcline attractor (dashed black line, where $dN/dt = 0$), confirming the dynamical stability of the condensate. Subsequently, the system slowly drifts along this attractor as the memory burden accumulates, until it intersects the quantum breaking threshold (dotted red line, where $Q_{mem} = N$), at which point the quasi-de Sitter phase terminates."
+  },
+  "image1": {
+    "key": "image1",
+    "name": "step_3_dynamical_selection_3_1777494912.png",
+    "caption": "Dynamical selection of the inflationary Hubble scale (H) as a function of the number of particle species (N\\_s), derived from the stabilization condition $N\\_s F(M\\_{Pl}/H) \\sim M\\_{Pl}^2/H^2$. The plot explores solutions for various functional forms of the memory load, $F$. For all tested sub-holographic scaling laws (constant, logarithmic, and power-law with exponent $\\delta < 2$), the relationship is monotonic, establishing a unique mapping between N\\_s and H. In contrast, the exact holographic scaling ($\\delta = 2$) is degenerate, yielding a family of solutions only for N\\_s = 1. The linear scaling case ($\\delta = 1$) is phenomenologically notable, as it selects the observed inflationary scale $H/M\\_{Pl} \\sim 10^{-5}$ for a particle content of $N\\_s \\sim 10^5$."
+  },
+  "image2": {
+    "key": "image2",
+    "name": "step_5_synthesis_constraints_5_1777495091.png",
+    "caption": "Constraints on the inflationary parameter space and the dynamical selection of the Hubble scale. (a) The phase diagram for the number of species $N\\_s$ versus the Hubble scale $H/M\\_{Pl}$ is shown, with the viable parameter space bounded by the species cutoff ($N\\_s \\leq M\\_{Pl}^2/H^2$) and the requirement for sufficient inflation ($N\\_e \\geq 60$). (b) A numerical heatmap of the number of e-folds, $N\\_e$, confirms these analytical bounds, revealing a ``stability corridor'' where a prolonged inflationary epoch is achieved. (c) The dynamical selection mechanism is illustrated, showing that sub-holographic scaling assumptions for the memory load functional establish a unique relationship between $N\\_s$ and $H$, with linear scaling ($F \\propto 1/H$) connecting the observationally favored CMB scale to a particle spectrum of $N\\_s \\sim 10^5$."
+  }
+}
