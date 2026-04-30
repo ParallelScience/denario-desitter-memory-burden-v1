@@ -1,0 +1,11 @@
+
+Generating research methodology with fast mode
+Running methods module...
+INFO: EDA report not found at EDA/eda.md. Methods will be generated without EDA insights. Run EDA first if you want to include EDA findings.
+Generating methods...
+ |  done 4277 946 [0m 3s]
+Revising the methodology (Reviewer 1)...Revising the methodology (Reviewer 2)...Revising the methodology (Reviewer 3)...
+
+
+Improving research methodology... |  done 24924 3703 [0m 26s]
+Research plan generated in 0 min 26 sec. Cost: $0.025
